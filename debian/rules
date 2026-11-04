@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# SPDX-License-Identifier: BSD-2-Clause
+# Copyright (c) 2026 The Blueberry Pie OS Authors
+
+include /usr/share/pietoolchain/rules.mk
+
+TOOLS := awk
+awk_SRCS := src/b.c src/lex.c src/lib.c src/awkgram.tab.c src/main.c src/parse.c src/proctab.c src/run.c src/tran.c
+awk_DIR := usr/bin
+include /usr/share/pietoolchain/tools.mk
+
+install: install-tools
+	install -d $(ROOT)/usr/share/man/man1
+	install -m 444 $(SRCROOT)/src/awk.1 $(ROOT)/usr/share/man/man1/awk.1
+
+.PHONY: install
